@@ -9,8 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         SellerDao sellerdao = DaoFactory.createSellerDao();
-        Department obj = new Department(1, "Books");
-        Seller seller = new Seller(1, "Bob", "bob@gmail.com", LocalDate.now(), 3000.0, obj);
+        Seller seller = sellerdao.findById(3);
         System.out.println(seller);
     }
 }
