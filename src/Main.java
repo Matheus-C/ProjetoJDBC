@@ -1,9 +1,8 @@
+import db.DB;
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
-import model.entities.Department;
 import model.entities.Seller;
 
-import java.time.LocalDate;
 
 public class Main {
 
@@ -11,5 +10,6 @@ public class Main {
         SellerDao sellerdao = DaoFactory.createSellerDao();
         Seller seller = sellerdao.findById(3);
         System.out.println(seller);
+        DB.closeConnection();
     }
 }
