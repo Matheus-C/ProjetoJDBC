@@ -5,7 +5,6 @@ import model.entities.Department;
 import model.entities.Seller;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -22,7 +21,7 @@ public class Main {
         for(Seller s: sellers){
             System.out.println(s);
         }
-        System.out.println("===test 3 Insert seller===");
+        /*System.out.println("===test 3 Insert seller===");
         seller = new Seller();
         seller.setBirthDate(LocalDate.now());
         seller.setDepartment(dep);
@@ -30,9 +29,22 @@ public class Main {
         seller.setName("aaa");
         seller.setBaseSalary(3000.0);
         sellerdao.insert(seller);
-        System.out.println("===INSERTED===");
+        System.out.println("===INSERTED===");*/
+
+        System.out.println("===test 4 Update===");
+        seller = new Seller();
+        seller.setId(7);
+        seller.setBirthDate(LocalDate.now());
+        seller.setDepartment(dep);
+        seller.setEmail("aaabbb@aaa.com");
+        seller.setName("aaabbb");
+        seller.setBaseSalary(3000.0);
+        sellerdao.update(seller);
+
+        System.out.println("===test 5 Find all===");
+        sellerdao.delete(8);
         sellers = sellerdao.findAll();
-        System.out.println("===test 4 Find all===");
+        System.out.println("===test 6 Find all===");
         for(Seller s: sellers){
             System.out.println(s);
         }
