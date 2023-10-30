@@ -4,6 +4,7 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +19,23 @@ public class Main {
         System.out.println("===test 2 Find by department===");
         Department dep = new Department(2, "aaaa");
         List<Seller> sellers = sellerdao.findByDepartment(dep);
-        System.out.println(Arrays.toString(sellers.toArray()));
+        for(Seller s: sellers){
+            System.out.println(s);
+        }
+        System.out.println("===test 3 Insert seller===");
+        seller = new Seller();
+        seller.setBirthDate(LocalDate.now());
+        seller.setDepartment(dep);
+        seller.setEmail("aaa@aaa.com");
+        seller.setName("aaa");
+        seller.setBaseSalary(3000.0);
+        sellerdao.insert(seller);
+        System.out.println("===INSERTED===");
+        sellers = sellerdao.findAll();
+        System.out.println("===test 4 Find all===");
+        for(Seller s: sellers){
+            System.out.println(s);
+        }
         DB.closeConnection();
     }
 }
