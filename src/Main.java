@@ -1,5 +1,6 @@
 import db.DB;
 import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -21,7 +22,7 @@ public class Main {
         for(Seller s: sellers){
             System.out.println(s);
         }
-        /*System.out.println("===test 3 Insert seller===");
+        System.out.println("===test 3 Insert seller===");
         seller = new Seller();
         seller.setBirthDate(LocalDate.now());
         seller.setDepartment(dep);
@@ -29,7 +30,7 @@ public class Main {
         seller.setName("aaa");
         seller.setBaseSalary(3000.0);
         sellerdao.insert(seller);
-        System.out.println("===INSERTED===");*/
+        System.out.println("===INSERTED===");
 
         System.out.println("===test 4 Update===");
         seller = new Seller();
@@ -49,5 +50,33 @@ public class Main {
             System.out.println(s);
         }
         DB.closeConnection();
+
+
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+        System.out.println("===test 1 Find by id===");
+        Department department = departmentDao.findById(3);
+        System.out.println(department);
+
+       System.out.println("===test 2 Insert department===");
+        department = new Department();
+       department.setName("aaa");
+       departmentDao.insert(department);
+        System.out.println("===INSERTED===");
+
+        System.out.println("===test 3 Update===");
+        department = new Department();
+        department.setId(1);
+        department.setName("aaabbb");
+        departmentDao.update(department);
+
+        System.out.println("===test 4 delete===");
+        departmentDao.delete(5);
+        List<Department> departments = departmentDao.findAll();
+        System.out.println("===test 5 Find all===");
+        for(Department s: departments){
+            System.out.println(s);
+        }
+        DB.closeConnection();
     }
+
 }

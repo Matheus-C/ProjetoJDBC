@@ -93,8 +93,8 @@ public class SellerDaoJDBC implements SellerDao {
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
             if(rs.next()){
-                Department dep = instantateDepartment(rs);
-                return instantateSeller(rs, dep);
+                Department dep = instantiateDepartment(rs);
+                return instantiateSeller(rs, dep);
             }
             return null;
         } catch (SQLException e) {
@@ -119,10 +119,10 @@ public class SellerDaoJDBC implements SellerDao {
             while(rs.next()){
                 Department dep = departmentMap.get(rs.getInt("DepartmentId"));
                 if(dep == null){
-                    dep = instantateDepartment(rs);
+                    dep = instantiateDepartment(rs);
                     departmentMap.put(rs.getInt("DepartmentId"), dep);
                 }
-                list.add(instantateSeller(rs, dep));
+                list.add(instantiateSeller(rs, dep));
             }
             return list;
         }catch (SQLException e){
@@ -146,9 +146,9 @@ public class SellerDaoJDBC implements SellerDao {
             rs = st.executeQuery();
             while(rs.next()){
                 if(dep == null){
-                    dep = instantateDepartment(rs);
+                    dep = instantiateDepartment(rs);
                 }
-                list.add(instantateSeller(rs, dep));
+                list.add(instantiateSeller(rs, dep));
             }
             return list;
         }catch (SQLException e){
@@ -159,7 +159,7 @@ public class SellerDaoJDBC implements SellerDao {
         }
     }
 
-    private Department instantateDepartment(ResultSet rs) throws SQLException {
+    private Department instantiateDepartment(ResultSet rs) throws SQLException {
         Department dep = new Department();
             dep.setId(rs.getInt("departmentId"));
             dep.setName(rs.getString("DepName"));
@@ -167,7 +167,7 @@ public class SellerDaoJDBC implements SellerDao {
 
     }
 
-    private Seller instantateSeller(ResultSet rs, Department dep) throws SQLException {
+    private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
         Seller seller = new Seller();
             seller.setId(rs.getInt("Id"));
             seller.setName(rs.getString("Name"));
